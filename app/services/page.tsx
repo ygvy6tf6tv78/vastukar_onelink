@@ -11,7 +11,7 @@ import {
   Building2,
   ChevronLeft,
   ChevronRight,
-  DraftingCompass,
+  Landmark,
   Hammer,
   Home,
   MessageCircle,
@@ -47,7 +47,7 @@ const categoryTabLabels: Record<ServiceCategoryKey, string> = {
 }
 
 const categoryIconMap: Record<ServiceCategoryKey, LucideIcon> = {
-  incomeTax: DraftingCompass,
+  incomeTax: Landmark,
   gstServices: Armchair,
   businessRegistration: Building2,
   auditCompliance: Ruler,

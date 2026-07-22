@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useImperativeHandle, forwardRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Download, MapPin, X, CalendarCheck, Layers3, Star, Share2, Images, Globe2 } from 'lucide-react'
+import { Phone, Download, MapPin, X, CalendarCheck, Landmark, Star, Share2, GalleryThumbnails, Globe2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -215,7 +215,7 @@ const ActionsRow = forwardRef<ActionsRowRef, ActionsRowProps>(({ onOpenPayments,
               e.currentTarget.style.transform = 'translateY(-1px)'
             }}
           >
-            <Layers3 className="w-5 h-5 shrink-0" style={{ color: '#5E351F' }} />
+            <Landmark className="w-5 h-5 shrink-0" style={{ color: '#5E351F' }} />
             <span className="text-sm font-bold truncate" style={{ color: '#0F172A', fontSize: '14px' }}>Services</span>
           </Link>
 
@@ -247,7 +247,7 @@ const ActionsRow = forwardRef<ActionsRowRef, ActionsRowProps>(({ onOpenPayments,
               e.currentTarget.style.background = '#FFFFFF'
             }}
           >
-            <Images className="w-5 h-5 shrink-0" style={{ color: '#5E351F' }} />
+            <GalleryThumbnails className="w-5 h-5 shrink-0" style={{ color: '#5E351F' }} />
             <span className="text-sm font-bold truncate" style={{ color: '#0F172A', fontSize: '14px' }}>Portfolio</span>
           </Link>
         </div>

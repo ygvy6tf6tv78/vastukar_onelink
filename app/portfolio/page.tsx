@@ -3,8 +3,8 @@
 import { useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, ArrowUpRight, Briefcase, Building2, FileText, Heart, Home, Landmark, MapPin, PencilRuler, Phone, X } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ArrowLeft, Briefcase, Building2, FileText, Heart, Home, Landmark, MapPin, PencilRuler, Phone } from 'lucide-react'
 
 import { getWhatsAppLink } from '../lib/phone'
 import { prepareReturnToHeroCard } from '../lib/homeNavigation'
@@ -37,7 +37,6 @@ function WhatsAppMark({ className = 'h-4 w-4' }: { className?: string }) {
 
 export default function PortfolioPage() {
   const [active, setActive] = useState<(typeof categories)[number]>('All Projects')
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null)
   const categoryScrollRef = useRef<HTMLDivElement>(null)
   const visibleProjects = useMemo(
     () => active === 'All Projects' ? projects : projects.filter((project) => project.category === active),
@@ -115,27 +114,37 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.04, duration: 0.25 }}
-              className="overflow-hidden rounded-[28px] border border-[#EADBC9] bg-white shadow-[0_18px_40px_rgba(94,53,31,0.11)]"
+              className="overflow-hidden rounded-[30px] border border-[#EADBC9] bg-white p-2 shadow-[0_20px_44px_rgba(94,53,31,0.12)]"
             >
-              <button type="button" onClick={() => setSelectedProject(project)} className="group relative block aspect-[4/3] w-full overflow-hidden bg-[#EEE7DE] text-left">
-                <Image src={project.image} alt={project.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="448px" />
+              <div className="relative block aspect-[16/11] w-full overflow-hidden rounded-[24px] bg-[#EEE7DE]">
+                <Image src={project.image} alt={project.name} fill className="object-cover" sizes="448px" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/5" />
                 <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/30 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-white backdrop-blur-md">{project.category}</span>
-                <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#5E351F] shadow-[0_9px_22px_rgba(0,0,0,0.22)]">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
-              </button>
-              <div className="p-5">
+              </div>
+              <div className="px-3 pb-3 pt-4">
                 <h2 className="text-[1.2rem] font-black leading-tight text-slate-950">{project.name}</h2>
                 <p className="mt-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-[#A66A3F]"><MapPin className="h-3.5 w-3.5" /> {project.location}</p>
                 <p className="mt-3 text-[13px] font-medium leading-6 text-slate-600">{project.description}</p>
                 <div className="mt-4 grid grid-cols-2 gap-2.5">
-                  <a href={`tel:+${shopConfig.contact.clientPhoneE164}`} className="flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5E351F] to-[#A66A3F] text-[12px] font-black text-white shadow-[0_9px_20px_rgba(94,53,31,0.30),inset_0_1px_0_rgba(255,255,255,0.25)]"><Phone className="h-4 w-4" /> Call Now</a>
+                  <a
+                    href={`tel:+${shopConfig.contact.clientPhoneE164}`}
+                    className="flex h-11 items-center justify-center gap-2 rounded-2xl text-[12px] font-black text-white"
+                    style={{
+                      background: 'linear-gradient(135deg, #5E351F 0%, #A66A3F 100%)',
+                      boxShadow: '0 8px 20px rgba(94,53,31,0.34), 0 4px 8px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.20)',
+                      transform: 'translateY(-1px)',
+                    }}
+                  ><Phone className="h-4 w-4" /> Call Now</a>
                   <Link
                   href={getWhatsAppLink(shopConfig.contact.clientPhoneE164, `Hello Vastukar Architects, I would like to enquire about ${project.name}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white text-[12px] font-black text-slate-900 shadow-[0_9px_20px_rgba(15,23,42,0.13),inset_0_1px_0_rgba(255,255,255,1)]"
+                  className="flex h-11 items-center justify-center gap-2 rounded-2xl bg-white text-[12px] font-black text-slate-900"
+                  style={{
+                    border: '1px solid rgba(15,23,42,0.08)',
+                    boxShadow: '0 8px 16px rgba(0,0,0,0.15), 0 4px 8px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.86)',
+                    transform: 'translateY(-1px)',
+                  }}
                 >
                     <WhatsAppMark className="h-[18px] w-[18px]" /> WhatsApp
                   </Link>
@@ -147,37 +156,6 @@ export default function PortfolioPage() {
 
       </div>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#071522]/95 p-3 backdrop-blur-md"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div initial={{ scale: 0.96, y: 14 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.96, y: 14 }} className="relative max-h-[92dvh] w-full max-w-md overflow-hidden rounded-[28px] bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
-              <div className="relative h-[min(62dvh,520px)] overflow-hidden bg-[#071522]">
-                <Image src={selectedProject.image} alt={selectedProject.name} fill className="object-contain" sizes="448px" priority />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/15" />
-                <button type="button" onClick={() => setSelectedProject(null)} className="absolute left-3 top-3 flex h-10 items-center gap-1.5 rounded-full bg-white/94 px-4 text-xs font-black text-[#0B2239] shadow-lg"><ArrowLeft className="h-4 w-4" /> Back</button>
-                <button type="button" onClick={() => setSelectedProject(null)} className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-black/35 text-white ring-1 ring-white/25" aria-label="Close project"><X className="h-5 w-5" /></button>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-[10px] font-black uppercase tracking-[0.14em] text-[#E8D3B5]">{selectedProject.category} • {selectedProject.location}</p>
-                  <h2 className="mt-1 text-2xl font-black leading-tight text-white">{selectedProject.name}</h2>
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-[13px] font-medium leading-6 text-slate-600">{selectedProject.description}</p>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <a href={`tel:+${shopConfig.contact.clientPhoneE164}`} className="flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5E351F] to-[#A66A3F] text-xs font-black text-white shadow-[0_9px_20px_rgba(94,53,31,0.28)]"><Phone className="h-4 w-4" /> Call Now</a>
-                  <Link href={getWhatsAppLink(shopConfig.contact.clientPhoneE164, `Hello Vastukar Architects, I would like to enquire about ${selectedProject.name}.`)} target="_blank" rel="noopener noreferrer" className="flex h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white text-xs font-black text-slate-900 shadow-[0_9px_20px_rgba(15,23,42,0.12)]"><WhatsAppMark className="h-[18px] w-[18px]" /> WhatsApp</Link>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   )
 }

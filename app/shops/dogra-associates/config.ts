@@ -70,7 +70,7 @@ export const shopConfig = {
 
   about: {
     title: 'Welcome to Vastukar',
-    shortDescription: 'Architecture, interiors and turnkey project solutions for homes, commercial spaces and institutions—designed with clarity and built with precision.',
+    shortDescription: 'Architecture, interiors and turnkey project solutions for homes, commercial spaces and institutions. From thoughtful planning to precise execution, every space is designed with clarity, character and purpose.',
   },
   menuUrl: '/services',
 

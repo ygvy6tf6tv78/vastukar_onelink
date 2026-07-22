@@ -36,8 +36,8 @@ export default function UrgencyCTA() {
       <div className="grid gap-4">
         {previewPackages.map((pkg, index) => {
           return (
+            <Link key={pkg.id} href="/portfolio" onClick={() => playClickSound()} className="block">
             <motion.article
-              key={pkg.id}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
@@ -52,7 +52,10 @@ export default function UrgencyCTA() {
                   <p className="rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-white backdrop-blur-md">
                       {pkg.category}
                   </p>
-                  <span className="rounded-full bg-white/92 px-3 py-1.5 text-[10px] font-black text-[#5E351F]">0{index + 1}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-white/92 px-3 py-1.5 text-[10px] font-black text-[#5E351F]">0{index + 1}</span>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#5E351F] shadow-lg"><ArrowRight className="h-4 w-4 -rotate-45" /></span>
+                  </div>
                 </div>
                 <div className="max-w-[82%]">
                   <h3 className="text-xl font-black leading-tight text-white">{pkg.title}</h3>
@@ -63,6 +66,7 @@ export default function UrgencyCTA() {
                 </div>
               </div>
             </motion.article>
+            </Link>
           )
         })}
       </div>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Armchair,
-  DraftingCompass,
+  Landmark,
   KeyRound,
   Ruler,
   type LucideIcon,
@@ -17,7 +17,7 @@ import { setReturnSection } from '../../../lib/homeNavigation'
 // Map preview-card key → Lucide icon. Keeps services.ts free of React imports
 // while letting us swap emojis for crisp, consistent line icons.
 const previewIconMap: Record<string, LucideIcon> = {
-  taxGst: DraftingCompass,
+  taxGst: Landmark,
   compliance: Armchair,
   audit: KeyRound,
   planning: Ruler,
@@ -47,7 +47,7 @@ export default function MenuPreview() {
       {/* 4-card square grid — Mango "Our Menu" geometry */}
       <div className="grid grid-cols-2 gap-3.5 mb-5">
         {servicesPreviewCards.map((card, index) => {
-          const Icon = previewIconMap[card.key] ?? DraftingCompass
+          const Icon = previewIconMap[card.key] ?? Landmark
           return (
           <Link key={card.key} href={card.href} className="block">
             <motion.div
