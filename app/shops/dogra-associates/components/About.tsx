@@ -23,11 +23,11 @@ export default function About() {
         <div className="section-shell-inner p-6 sm:p-7">
           <div className="relative">
             <div className="section-title-accent mb-4">
-              <h2 className="text-[1.85rem] font-black leading-tight tracking-tight text-white sm:text-[2.1rem]">
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 {shopConfig.about.title}
               </h2>
             </div>
-            <p className="text-[17px] font-medium leading-[1.75] text-white/95 sm:text-[18px]">
+            <p className="text-[15px] leading-[1.75] text-white/90">
               {shopConfig.about.shortDescription}
             </p>
           </div>
