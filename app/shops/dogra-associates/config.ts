@@ -99,7 +99,7 @@ export const shopConfig = {
 
   credits: { designer: 'RepixelX Studio', designerUrl: 'https://repixelx.com' },
   sections: { showAbout: true, showMenu: false, showServices: true, showGallery: true, showReviews: true, showSocialConnect: true, showContactCard: true, showFooter: true },
-  assets: { logo: '/vastukar/vastukar-logo-new.png', cover: '/vastukar/katra-police.jpg', gallery: '/vastukar/', qr: '/vastukar/demo-payment-qr.png' },
+  assets: { logo: '/vastukar/vastukar-logo-new.png', cover: '/vastukar/hero-skyline.png', gallery: '/vastukar/', qr: '/vastukar/demo-payment-qr.png' },
   catalog: [] as Array<{ id: string; title: string; description: string; logo: string; details: string; images: string[] }>,
   brochures: [] as Array<{ href: string; title: string }>,
 }

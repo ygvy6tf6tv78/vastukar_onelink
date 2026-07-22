@@ -40,7 +40,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Vastukar Architects | Architecture and Interior Design in Jammu',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
     ],
   },
