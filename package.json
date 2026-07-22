@@ -1,0 +1,53 @@
+{
+  "name": "vastukar-onelink",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vastukar Architects OneLink digital card",
+  "homepage": "https://github.com/ygvy6tf6tv78/vastukar_onelink",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ygvy6tf6tv78/vastukar_onelink.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ygvy6tf6tv78/vastukar_onelink/issues"
+  },
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate-vcard": "tsx scripts/generate-vcard.ts"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@supabase/supabase-js": "^2.105.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.344.0",
+    "next": "^14.2.35",
+    "qrcode": "^1.5.3",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-pdf": "^7.7.0",
+    "tailwind-merge": "^2.2.0",
+    "yet-another-react-lightbox": "^3.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
+}
