@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import { headers } from 'next/headers'
 import './globals.css'
 import { siteConfig } from './data/site'
 import { LanguageProvider } from './contexts/LanguageContext'
@@ -20,40 +21,53 @@ const poppins = Poppins({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: siteConfig.seo.title,
-  description: siteConfig.seo.description,
-  keywords: siteConfig.seo.keywords,
-  authors: [{ name: siteConfig.name }],
-  creator: siteConfig.credits.designer,
-  openGraph: {
-    type: 'website',
-    locale: 'en_IN',
-    url: siteConfig.url,
+export function generateMetadata(): Metadata {
+  const requestHeaders = headers()
+  const forwardedHost = requestHeaders.get('x-forwarded-host')
+  const host = forwardedHost || requestHeaders.get('host')
+  const forwardedProtocol = requestHeaders.get('x-forwarded-proto')
+  const protocol = forwardedProtocol || (host?.startsWith('localhost') ? 'http' : 'https')
+  const publicUrl = host ? `${protocol}://${host}` : siteConfig.url
+  const metadataBase = new URL(publicUrl)
+  const imageUrl = new URL(`${shopConfig.assets.cover}?v=20260723`, metadataBase).toString()
+
+  return {
+    metadataBase,
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: `${siteConfig.url}${shopConfig.assets.cover}`,
-        width: 1200,
-        height: 630,
-        alt: 'Vastukar Architects | Architecture and Interior Design in Jammu',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.seo.title,
-    description: siteConfig.seo.description,
-    images: [`${siteConfig.url}${shopConfig.assets.cover}`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+    keywords: siteConfig.seo.keywords,
+    authors: [{ name: siteConfig.name }],
+    creator: siteConfig.credits.designer,
+    alternates: { canonical: publicUrl },
+    openGraph: {
+      type: 'website',
+      locale: 'en_IN',
+      url: publicUrl,
+      title: siteConfig.seo.title,
+      description: siteConfig.seo.description,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: imageUrl,
+          secureUrl: imageUrl,
+          width: 1042,
+          height: 398,
+          alt: 'Vastukar Architects & Interiors, Jammu',
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.seo.title,
+      description: siteConfig.seo.description,
+      images: [imageUrl],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  }
 }
 
 export const viewport: Viewport = {
